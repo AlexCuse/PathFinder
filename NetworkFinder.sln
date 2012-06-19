@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkFinder", "NetworkFinder\NetworkFinder.csproj", "{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkFinder.Tests", "NetworkFinder.Tests\NetworkFinder.Tests.csproj", "{D4B87800-EA7D-45CD-9BBC-4AD1042C0E74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4B87800-EA7D-45CD-9BBC-4AD1042C0E74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B87800-EA7D-45CD-9BBC-4AD1042C0E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4B87800-EA7D-45CD-9BBC-4AD1042C0E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B87800-EA7D-45CD-9BBC-4AD1042C0E74}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
