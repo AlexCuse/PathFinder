@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkFinder", "NetworkFinder\NetworkFinder.csproj", "{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder", "PathFinder\PathFinder.csproj", "{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkFinder.Tests", "NetworkFinder.Tests\NetworkFinder.Tests.csproj", "{D4B87800-EA7D-45CD-9BBC-4AD1042C0E74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Tests", "PathFinder.Tests\PathFinder.Tests.csproj", "{D4B87800-EA7D-45CD-9BBC-4AD1042C0E74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

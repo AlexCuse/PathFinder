@@ -1,4 +1,4 @@
-S junk files
+#OS junk files
 [Tt]humbs.db
 *.DS_Store
 
@@ -50,7 +50,7 @@ _ReSharper*/
 ~$*
 
 #NuGet
-packages/
+#/packages
 
 #ncrunch
 *ncrunch*
