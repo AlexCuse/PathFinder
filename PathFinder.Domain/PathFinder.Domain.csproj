@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C5D8F3BD-CD9B-4981-B001-2CB326241654}</ProjectGuid>
+    <ProjectGuid>{ADBBFC72-DF7D-42FB-93AE-D251FC9A9C46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PathFinder.Loaders</RootNamespace>
-    <AssemblyName>PathFinder.Loaders</AssemblyName>
+    <RootNamespace>PathFinder.Domain</RootNamespace>
+    <AssemblyName>PathFinder.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,21 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gpx\Gpx.designer.cs" />
-    <Compile Include="Gpx\GpxFileLoader.cs" />
-    <Compile Include="IFileLoader.cs" />
+    <Compile Include="PathCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Gpx\Gpx.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PathFinder.Domain\PathFinder.Domain.csproj">
-      <Project>{ADBBFC72-DF7D-42FB-93AE-D251FC9A9C46}</Project>
-      <Name>PathFinder.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
