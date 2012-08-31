@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gpx\Gpx.designer.cs" />
+    <Compile Include="Gpx\Gpx.cs">
+      <DependentUpon>Gpx.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Gpx\GpxFileLoader.cs" />
     <Compile Include="IFileLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

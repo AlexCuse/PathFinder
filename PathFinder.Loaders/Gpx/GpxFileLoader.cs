@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
 using System.Xml.Schema;
@@ -11,14 +12,42 @@ namespace PathFinder.Loaders.Gpx
     {
         static readonly Lazy<XmlSchemaSet> _schemaSet = new Lazy<XmlSchemaSet>(ReadXmlSchemaSet);
 
-        public PathCollection Load(string filePath)
+        public GPSData Load(string filePath)
         {
-            var doc = XDocument.Load(filePath);
-            doc.Validate(_schemaSet.Value, null);
-            var serializer = new XmlSerializer(typeof(gpxType));
-            var gpx = (gpxType)serializer.Deserialize(doc.CreateReader());
+            var output = new GPSData();
 
-            throw new NotImplementedException();
+            var gpx = LoadGpx(filePath);
+
+            foreach(var track in gpx.trk)
+            {
+                var way = new Way();
+                foreach(var trackSegment in track.trkseg)
+                {
+                    foreach(var trackPoint in trackSegment.trkpt)
+                    {
+                        way.Add(new WayPoint
+                                    {
+                                        Latitude = trackPoint.lat,
+                                        Longitude = trackPoint.lon,
+                                        Elevation = trackPoint.eleSpecified ? (decimal?)trackPoint.ele : null
+                                    });
+                    }
+                }
+                output.Add(way);
+            }
+            return output;
+        }
+
+        private static gpxType LoadGpx(string filePath)
+        {
+            //var doc = XDocument.Load(filePath);
+            //doc.Validate(_schemaSet.Value, null);
+            var serializer = new XmlSerializer(typeof(gpxType), "http://www.topografix.com/GPX/1/1");
+            
+            using (var reader = new FileStream(filePath, FileMode.Open))
+            {
+                return (gpxType) serializer.Deserialize(reader);
+            }
         }
 
         static XmlSchemaSet ReadXmlSchemaSet()
