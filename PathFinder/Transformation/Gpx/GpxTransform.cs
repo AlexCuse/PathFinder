@@ -1,50 +1,47 @@
-﻿using System;
+﻿using PathFinder.Domain;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
-using PathFinder.Domain;
 
-namespace PathFinder.Loaders.Gpx
+namespace PathFinder.Transformation.Gpx
 {
-    public sealed class GpxFileLoader : IFileLoader
+    public sealed class GpxTransform : ITransform
     {
         static readonly Lazy<XmlSchemaSet> _schemaSet = new Lazy<XmlSchemaSet>(ReadXmlSchemaSet);
 
-        public GPSData Load(string filePath)
+        public GPSData TransformInput(TextReader textReader)
         {
-            var output = new GPSData();
-
-            var gpx = LoadGpx(filePath);
-
-            foreach(var track in gpx.trk)
+            var data = new GPSData();
+            var gpx = LoadGpx(textReader);
+            foreach (var track in gpx.trk)
             {
                 var way = new Way();
-                foreach(var trackSegment in track.trkseg)
+                foreach (var trackSegment in track.trkseg)
                 {
-                    foreach(var trackPoint in trackSegment.trkpt)
+                    foreach (var trackPoint in trackSegment.trkpt)
                     {
                         way.Add(new WayPoint
-                                    {
-                                        Latitude = trackPoint.lat,
-                                        Longitude = trackPoint.lon,
-                                        Elevation = trackPoint.eleSpecified ? (decimal?)trackPoint.ele : null
-                                    });
+                        {
+                            Latitude = trackPoint.lat,
+                            Longitude = trackPoint.lon,
+                            Elevation = trackPoint.eleSpecified ? (decimal?)trackPoint.ele : null
+                        });
                     }
                 }
-                output.Add(way);
+                data.Add(way);
             }
-            return output;
+            return data;
         }
 
-        private static gpxType LoadGpx(string filePath)
+        static gpxType LoadGpx(TextReader textReader)
         {
-            //var doc = XDocument.Load(filePath);
-            //doc.Validate(_schemaSet.Value, null);
+            var doc = XDocument.Load(textReader);
+            doc.Validate(_schemaSet.Value, null);
             var serializer = new XmlSerializer(typeof(gpxType), "http://www.topografix.com/GPX/1/1");
-            
-            using (var reader = new FileStream(filePath, FileMode.Open))
+            using (var reader = doc.CreateReader())
             {
                 return (gpxType) serializer.Deserialize(reader);
             }
@@ -53,8 +50,8 @@ namespace PathFinder.Loaders.Gpx
         static XmlSchemaSet ReadXmlSchemaSet()
         {
             var set = new XmlSchemaSet();
-            var assembly = Assembly.GetAssembly(typeof(GpxFileLoader));
-            using (var stream = assembly.GetManifestResourceStream("PathFinder.Loaders.Gpx.Gpx.xsd"))
+            var assembly = Assembly.GetAssembly(typeof(GpxTransform));
+            using (var stream = assembly.GetManifestResourceStream("PathFinder.Transformation.Gpx.Gpx.xsd"))
             {
                 var schema = XmlSchema.Read(stream, null);
                 set.Add(schema);

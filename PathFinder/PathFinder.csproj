@@ -56,8 +56,7 @@
     <Compile Include="Transformation\Gpx\Gpx.cs">
       <DependentUpon>Gpx.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Transformation\Gpx\GpxFileLoader.cs" />
-    <Compile Include="Transformation\IFileLoader.cs" />
+    <Compile Include="Transformation\Gpx\GpxTransform.cs" />
     <Compile Include="Transformation\ITransform.cs" />
     <Compile Include="Transformation\TransformExtensions.cs" />
     <Compile Include="Utilities\ValidationExtensions.cs" />
