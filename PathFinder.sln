@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Tests", "PathFin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Loaders", "PathFinder.Loaders\PathFinder.Loaders.csproj", "{C5D8F3BD-CD9B-4981-B001-2CB326241654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Loaders.Tests", "PathFinder.Loaders.Tests\PathFinder.Loaders.Tests.csproj", "{5756778E-DD28-4D77-981B-7DA8F66B5D5D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +25,6 @@ Global
 		{C5D8F3BD-CD9B-4981-B001-2CB326241654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D8F3BD-CD9B-4981-B001-2CB326241654}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D8F3BD-CD9B-4981-B001-2CB326241654}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5756778E-DD28-4D77-981B-7DA8F66B5D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5756778E-DD28-4D77-981B-7DA8F66B5D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5756778E-DD28-4D77-981B-7DA8F66B5D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5756778E-DD28-4D77-981B-7DA8F66B5D5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

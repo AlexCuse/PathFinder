@@ -65,11 +65,24 @@
     <Compile Include="HausdorffTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GeometryExtensionsTest.cs" />
+    <Compile Include="TransformationTests\Gpx\GpxLoaderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TransformationTests\SampleFiles\DamLoop.gpx">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TransformationTests\SampleFiles\GreenLane.gpx">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PathFinder.Loaders\PathFinder.Loaders.csproj">
+      <Project>{c5d8f3bd-cd9b-4981-b001-2cb326241654}</Project>
+      <Name>PathFinder.Loaders</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PathFinder\PathFinder.csproj">
       <Project>{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}</Project>
       <Name>NetworkFinder</Name>
