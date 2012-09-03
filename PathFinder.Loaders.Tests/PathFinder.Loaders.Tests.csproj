@@ -68,13 +68,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PathFinder.Domain\PathFinder.Domain.csproj">
-      <Project>{ADBBFC72-DF7D-42FB-93AE-D251FC9A9C46}</Project>
-      <Name>PathFinder.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PathFinder.Loaders\PathFinder.Loaders.csproj">
       <Project>{C5D8F3BD-CD9B-4981-B001-2CB326241654}</Project>
       <Name>PathFinder.Loaders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PathFinder\PathFinder.csproj">
+      <Project>{33d6af79-b0b1-442d-bb36-99f2e0f9b505}</Project>
+      <Name>PathFinder</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
