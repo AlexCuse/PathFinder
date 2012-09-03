@@ -79,10 +79,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PathFinder.Loaders\PathFinder.Loaders.csproj">
-      <Project>{c5d8f3bd-cd9b-4981-b001-2cb326241654}</Project>
-      <Name>PathFinder.Loaders</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PathFinder\PathFinder.csproj">
       <Project>{33D6AF79-B0B1-442D-BB36-99F2E0F9B505}</Project>
       <Name>NetworkFinder</Name>
