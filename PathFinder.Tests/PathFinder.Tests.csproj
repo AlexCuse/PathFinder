@@ -69,14 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="TransformationTests\SampleFiles\DamLoop.gpx">
+    <EmbeddedResource Include="TransformationTests\SampleFiles\DamLoop.gpx">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TransformationTests\SampleFiles\GreenLane.gpx">
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransformationTests\SampleFiles\GreenLane.gpx">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PathFinder\PathFinder.csproj">
