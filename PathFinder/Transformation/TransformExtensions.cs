@@ -1,47 +1,31 @@
-﻿#define SUPPORT_TASKS
-
+﻿using System.IO;
 using PathFinder.Domain;
 using PathFinder.Utilities;
-using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PathFinder.Transformation
 {
     public static class TransformExtensions
     {
-
-#if SUPPORT_TASKS
-        public static Task<GPSData> AsyncTransformInput(this ITransform transform, TextReader textReader)
+        public static GPSData TransformInput(this ITransform transform, byte[] data)
         {
-            transform.ThrowIfNull("transform");
-            return Task<GPSData>.Factory.StartNew(() => transform.TransformInput(textReader));
+            return TransformInput(transform, data, null);
         }
 
-        public static Task<GPSData> AsyncTransformTextInput(this ITransform transform, string text)
+        public static GPSData TransformInput(this ITransform transform, byte[] data, Encoding encoding)
         {
             transform.ThrowIfNull("transform");
-            return Task<GPSData>.Factory.StartNew(() => transform.TransformTextInput(text));
+            data.ThrowIfNull("data");
+            using (var ms = new MemoryStream(data))
+            using (var br = new BinaryReader(ms, encoding ?? Encoding.Default))
+                return transform.TransformInput(br);
         }
 
-        public static Task<GPSData> AsyncTransformFileInput(this ITransform transform, string filePath, Encoding encoding = null)
+        public static GPSData TransformInput(this ITransform transform, string data)
         {
             transform.ThrowIfNull("transform");
-            return Task<GPSData>.Factory.StartNew(() => transform.TransformFileInput(filePath, encoding));
-        }
-#endif
-
-        public static GPSData TransformTextInput(this ITransform transform, string text)
-        {
-            transform.ThrowIfNull("transform");
-            using (var tr = new StringReader(text))
-                return transform.TransformInput(tr);
-        }
-
-        public static GPSData TransformFileInput(this ITransform transform, string filePath, Encoding encoding = null)
-        {
-            transform.ThrowIfNull("transform");
-            using (var sr = new StreamReader(filePath, encoding ?? Encoding.Default))
+            data.ThrowIfNull("data");
+            using (var sr = new StringReader(data))
                 return transform.TransformInput(sr);
         }
     }

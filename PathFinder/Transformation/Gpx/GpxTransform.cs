@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using PathFinder.Utilities;
 
 namespace PathFinder.Transformation.Gpx
 {
@@ -12,8 +13,20 @@ namespace PathFinder.Transformation.Gpx
     {
         static readonly Lazy<XmlSchemaSet> _schemaSet = new Lazy<XmlSchemaSet>(ReadXmlSchemaSet);
 
+        public GPSData TransformInput(BinaryReader binaryReader)
+        {
+            binaryReader.ThrowIfNull("binaryReader");
+            // The GPX transform does not explicity support binary transformation
+            // but we can treat the input as a string that uses the default encoding.
+            // Don't dispose of the StreamReader because it will dispose of the underlying Stream.
+            var sr = new StreamReader(binaryReader.BaseStream);
+            return TransformInput(sr);
+        }
+
         public GPSData TransformInput(TextReader textReader)
         {
+            textReader.ThrowIfNull("textReader");
+
             var data = new GPSData();
             var gpx = LoadGpx(textReader);
             foreach (var track in gpx.trk)
