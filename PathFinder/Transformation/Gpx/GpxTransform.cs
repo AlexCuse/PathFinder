@@ -9,26 +9,24 @@ using PathFinder.Utilities;
 
 namespace PathFinder.Transformation.Gpx
 {
-    public sealed class GpxTransform : ITransform
+    internal sealed class GpxTransform : ITransform
     {
         static readonly Lazy<XmlSchemaSet> _schemaSet = new Lazy<XmlSchemaSet>(ReadXmlSchemaSet);
-
-        public GPSData TransformInput(BinaryReader binaryReader)
+        
+        public GPSData Read(BinaryReader reader)
         {
-            binaryReader.ThrowIfNull("binaryReader");
-            // The GPX transform does not explicity support binary transformation
-            // but we can treat the input as a string that uses the default encoding.
+            reader.ThrowIfNull("reader");
+            // Treat the input as text that uses the default encoding.
             // Don't dispose of the StreamReader because it will dispose of the underlying Stream.
-            var sr = new StreamReader(binaryReader.BaseStream);
-            return TransformInput(sr);
+            return Read(new StreamReader(reader.BaseStream));
         }
 
-        public GPSData TransformInput(TextReader textReader)
+        public GPSData Read(TextReader reader)
         {
-            textReader.ThrowIfNull("textReader");
+            reader.ThrowIfNull("reader");
 
             var data = new GPSData();
-            var gpx = LoadGpx(textReader);
+            var gpx = LoadGpx(reader);
             foreach (var track in gpx.trk)
             {
                 var way = new Way();
@@ -47,6 +45,16 @@ namespace PathFinder.Transformation.Gpx
                 data.Add(way);
             }
             return data;
+        }
+
+        public void Write(BinaryWriter writer, GPSData data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Write(TextWriter writer, GPSData data)
+        {
+            throw new NotImplementedException();
         }
 
         static gpxType LoadGpx(TextReader textReader)
