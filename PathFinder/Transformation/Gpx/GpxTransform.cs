@@ -9,17 +9,9 @@ using PathFinder.Utilities;
 
 namespace PathFinder.Transformation.Gpx
 {
-    internal sealed class GpxTransform : ITransform
+    internal sealed class GpxTransform : ITextTransform
     {
         static readonly Lazy<XmlSchemaSet> _schemaSet = new Lazy<XmlSchemaSet>(ReadXmlSchemaSet);
-        
-        public GPSData Read(BinaryReader reader)
-        {
-            reader.ThrowIfNull("reader");
-            // Treat the input as text that uses the default encoding.
-            // Don't dispose of the StreamReader because it will dispose of the underlying Stream.
-            return Read(new StreamReader(reader.BaseStream));
-        }
 
         public GPSData Read(TextReader reader)
         {
@@ -45,11 +37,6 @@ namespace PathFinder.Transformation.Gpx
                 data.Add(way);
             }
             return data;
-        }
-
-        public void Write(BinaryWriter writer, GPSData data)
-        {
-            throw new NotImplementedException();
         }
 
         public void Write(TextWriter writer, GPSData data)

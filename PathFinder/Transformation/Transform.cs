@@ -7,17 +7,17 @@ namespace PathFinder.Transformation
 {
     public static class Transform
     {
-        public static readonly ITransform Gpx = new GpxTransform();
+        public static readonly ITextTransform Gpx = new GpxTransform();
 
-        private static readonly Dictionary<string, ITransform> _keyMap = new Dictionary<string, ITransform>
+        private static readonly Dictionary<string, ITextTransform> _keyMap = new Dictionary<string, ITextTransform>
         {
             { "gpx", Gpx }
         };
 
-        public static ITransform Get(string key)
+        public static ITextTransform Get(string key)
         {
             key.ThrowIfNull("key");
-            ITransform result;
+            ITextTransform result;
             if (!_keyMap.TryGetValue(key.Trim().ToLowerInvariant(), out result))
                 throw new ArgumentException();
             return result;
