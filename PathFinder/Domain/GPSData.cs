@@ -12,5 +12,6 @@ namespace PathFinder.Domain
         public Decimal Latitude { get; set; }
         public Decimal Longitude { get; set; }
         public Decimal? Elevation { get; set; }
+        public DateTime? TimeStamp { get; set; }
     }
 }

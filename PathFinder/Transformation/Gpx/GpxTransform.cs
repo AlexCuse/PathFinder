@@ -30,7 +30,8 @@ namespace PathFinder.Transformation.Gpx
                         {
                             Latitude = trackPoint.lat,
                             Longitude = trackPoint.lon,
-                            Elevation = trackPoint.eleSpecified ? (decimal?)trackPoint.ele : null
+                            Elevation = trackPoint.eleSpecified ? (decimal?)trackPoint.ele : null,
+                            TimeStamp = trackPoint.timeSpecified ? (DateTime?)trackPoint.time : null
                         });
                     }
                 }
