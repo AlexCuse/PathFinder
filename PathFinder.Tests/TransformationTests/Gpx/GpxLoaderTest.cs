@@ -3,7 +3,6 @@ using System.IO;
 using System.Reflection;
 using NUnit.Framework;
 using System.Linq;
-using PathFinder.Transformation.Gpx;
 using PathFinder.Transformation;
 
 namespace PathFinder.Tests.TransformationTests.Gpx
@@ -13,9 +12,9 @@ namespace PathFinder.Tests.TransformationTests.Gpx
     {
         [TestCase("DamLoop.gpx", 1, 1155)]
         [TestCase("GreenLane.gpx", 1, 1665)]//with garmin extensions
+        [TestCase("WhiteClay.gpx", 1, 4391)]//with garmin extensions
         public void Load(string filePath, int wayCount, int waypointCount)
         {
-
             using(var stream = Assembly.GetExecutingAssembly()
                 .GetManifestResourceStream("PathFinder.Tests.TransformationTests.SampleFiles." + filePath))
             using(var reader = new StreamReader(stream))

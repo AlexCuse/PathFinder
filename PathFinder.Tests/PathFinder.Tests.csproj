@@ -62,7 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Distance\CalculationsTest.cs" />
+    <Compile Include="Domain\Timing\TimerTest.cs" />
     <Compile Include="HausdorffTest.cs" />
+    <Compile Include="NumericExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GeometryExtensionsTest.cs" />
     <Compile Include="TransformationTests\Gpx\GpxLoaderTest.cs" />
@@ -75,6 +78,7 @@
     <EmbeddedResource Include="TransformationTests\SampleFiles\GreenLane.gpx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="TransformationTests\SampleFiles\WhiteClay.gpx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PathFinder\PathFinder.csproj">

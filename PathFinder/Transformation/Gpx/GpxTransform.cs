@@ -28,9 +28,9 @@ namespace PathFinder.Transformation.Gpx
                     {
                         way.Add(new WayPoint
                         {
-                            Latitude = trackPoint.lat,
-                            Longitude = trackPoint.lon,
-                            Elevation = trackPoint.eleSpecified ? (decimal?)trackPoint.ele : null,
+                            Latitude = Convert.ToDouble(trackPoint.lat),
+                            Longitude = Convert.ToDouble(trackPoint.lon),
+                            Elevation = trackPoint.eleSpecified ? (double?)trackPoint.ele : null,
                             TimeStamp = trackPoint.timeSpecified ? (DateTime?)trackPoint.time : null
                         });
                     }
