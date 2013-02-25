@@ -1,14 +1,8 @@
-﻿using System.Linq;
-using PathFinder.Domain.Distance;
+﻿using PathFinder.Domain.Distance;
 
 namespace PathFinder.Domain.Timing
 {
-    public interface ITimer
-    {
-        TimerResult Time(GPSData data);
-    }
-
-    public class Timer : ITimer
+    public class Timer : IDataCollector
     {
         readonly double _velocityThresholdForMovingTime;
 
@@ -17,49 +11,27 @@ namespace PathFinder.Domain.Timing
             _velocityThresholdForMovingTime = velocityThresholdForMovingTime;
         }
 
-        public TimerResult Time(GPSData data)
+        double _movingTime;
+        double _totalTime;
+
+        public void Collect(WayPoint previousPoint, WayPoint currentPoint)
         {
-            var points = data.SelectMany(w => w).ToArray();
-            var totalTime = (points[points.Length - 1].TimeStamp - points[0].TimeStamp).Value.TotalSeconds;
-            double movingTime = totalTime; //overwrite if we can
-
-            if (points.Any(p => p.TimeStamp.HasValue))
+            if (previousPoint != null)
             {
-                movingTime = 0;
+                var distance = Calculations.HaversineDistanceInMeters(previousPoint, currentPoint);
+                var seconds = (currentPoint.TimeStamp - previousPoint.TimeStamp).Value.TotalMilliseconds / 1000;
 
-                WayPoint currentPoint = null;
-                WayPoint previousPoint = null;
+                _totalTime += seconds;
 
-                for (var i = 0; i < points.Length; i++)
+                if (distance / seconds >= _velocityThresholdForMovingTime)
                 {
-                    previousPoint = currentPoint;
-                    currentPoint = points[i];
-
-                    if (previousPoint != null)
-                    {
-                        var distance = Calculations.HaversineDistanceInMeters(previousPoint, currentPoint);
-                        var seconds = (currentPoint.TimeStamp - previousPoint.TimeStamp).Value.TotalMilliseconds / 1000;
-
-                        if (distance / seconds >= _velocityThresholdForMovingTime) 
-                        {
-                            movingTime += seconds;
-                        }
-                    }
+                    _movingTime += seconds;
                 }
             }
-
-            return new TimerResult { TotalTime = totalTime, MovingTime = movingTime };
         }
-    }
 
-    public class TimerResult
-    {
-        public double TotalTime { get; set; }
-        public double MovingTime { get; set; }
-
-        public double StoppedTime
-        {
-            get { return TotalTime - MovingTime; }
-        }
+        public double TotalTime { get { return _totalTime; } }
+        public double MovingTime { get { return _movingTime; } }
+        public double StoppedTime { get { return TotalTime - MovingTime; } }
     }
 }

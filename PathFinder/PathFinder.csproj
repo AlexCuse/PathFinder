@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Aggregator.cs" />
     <Compile Include="Domain\Distance\Calculations.cs" />
     <Compile Include="Domain\GPSData.cs" />
+    <Compile Include="Domain\IDataCollector.cs" />
     <Compile Include="Domain\Timing\Timer.cs" />
     <Compile Include="Hausdorff.cs" />
     <Compile Include="NumericExtensions.cs" />

@@ -19,7 +19,10 @@ namespace PathFinder.Tests.Domain.Timing
 
             //.44074 meters/second = approximately 1 MPH 
             //this gets us very close to garmin's moving time calculation
-            var time = new Timer(.44704).Time(data);
+            var time = new Timer(.44704);
+
+            var aggregator = new Aggregator(new[] { time });
+            aggregator.Aggregate(data);
 
             Assert.AreEqual(totalTime, time.TotalTime);
             Assert.AreEqual(movingTime, time.MovingTime);
@@ -28,7 +31,7 @@ namespace PathFinder.Tests.Domain.Timing
         GPSData LoadData(string fileName)
         {
             GPSData data;
-            using(var stream = Assembly.GetExecutingAssembly()
+            using (var stream = Assembly.GetExecutingAssembly()
                 .GetManifestResourceStream("PathFinder.Tests.TransformationTests.SampleFiles." + fileName))
             using (var reader = new StreamReader(stream))
             {
