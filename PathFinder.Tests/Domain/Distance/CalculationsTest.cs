@@ -2,7 +2,7 @@
 using PathFinder.Domain;
 using PathFinder.Domain.Distance;
 
-namespace PathFinder.Tests.Distance
+namespace PathFinder.Tests.Domain.Distance
 {
     [TestFixture]
     public class CalculationsTest

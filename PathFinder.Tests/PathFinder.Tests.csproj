@@ -62,7 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Distance\CalculationsTest.cs" />
+    <Compile Include="Domain\Distance\CalculationsTest.cs" />
+    <Compile Include="Domain\Distance\OdometerTest.cs" />
     <Compile Include="Domain\Timing\TimerTest.cs" />
     <Compile Include="HausdorffTest.cs" />
     <Compile Include="NumericExtensionsTest.cs" />
