@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\FileLoadingTest.cs" />
     <Compile Include="Domain\AggregatorTest.cs" />
     <Compile Include="Domain\Distance\CalculationsTest.cs" />
     <Compile Include="Domain\Distance\OdometerTest.cs" />

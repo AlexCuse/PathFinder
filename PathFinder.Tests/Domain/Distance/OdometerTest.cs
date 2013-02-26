@@ -8,7 +8,7 @@ using PathFinder.Transformation;
 namespace PathFinder.Tests.Domain.Distance
 {
     [TestFixture]
-    public class OdometerTest
+    public class OdometerTest : FileLoadingTest
     {
         [Test]
         public void Collect()
@@ -52,18 +52,6 @@ namespace PathFinder.Tests.Domain.Distance
             aggregator.Aggregate(data);
 
             Assert.AreEqual(distanceInMeters, odometer.Distance);
-        }
-
-        GPSData LoadData(string fileName)
-        {
-            GPSData data;
-            using (var stream = Assembly.GetExecutingAssembly()
-                .GetManifestResourceStream("PathFinder.Tests.TransformationTests.SampleFiles." + fileName))
-            using (var reader = new StreamReader(stream))
-            {
-                data = Transform.Gpx.Read(reader);
-            }
-            return data;
         }
     }
 }
